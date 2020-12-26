@@ -25,9 +25,9 @@ int WINAPI WinMain(HINSTANCE hInstance,
                    LPTSTR szCmdLine,
                    int nCmdShow)
 {
-    MyWinApp *pMyWinApp = NULL;
+    CMyWinApp *pMyWinApp = NULL;
 
-    pMyWinApp = MyWinApp::GetWinApp();
+    pMyWinApp = CMyWinApp::GetWinApp();
 
     pMyWinApp->InitInstance();
     pMyWinApp->Run();

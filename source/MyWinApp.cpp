@@ -1,20 +1,20 @@
 #include "MyWinApp.h"
 
-static MyWinApp *g_MyApp = NULL;
+static CMyWinApp *g_MyApp = NULL;
 
 extern LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
-MyWinApp::MyWinApp()
+CMyWinApp::CMyWinApp()
 {
 
 }
 
-MyWinApp::~MyWinApp()
+CMyWinApp::~CMyWinApp()
 {
 
 }
 
-BOOL MyWinApp::InitInstance()
+BOOL CMyWinApp::InitInstance()
 {
     TCHAR      szAppName[32] = TEXT("Win32LibTest");
     HWND       hWnd          = NULL;
@@ -54,7 +54,7 @@ BOOL MyWinApp::InitInstance()
     return TRUE;
 }
 
-BOOL MyWinApp::Run()
+BOOL CMyWinApp::Run()
 {
     MSG msg;
 
@@ -67,16 +67,16 @@ BOOL MyWinApp::Run()
     return msg.wParam;
 }
 
-BOOL MyWinApp::ExitInstance()
+BOOL CMyWinApp::ExitInstance()
 {
     return TRUE;
 }
 
-MyWinApp* MyWinApp::GetWinApp()
+CMyWinApp* CMyWinApp::GetWinApp()
 {
     if (NULL == g_MyApp)
     {
-        g_MyApp = new MyWinApp();
+        g_MyApp = new CMyWinApp();
     }
 
     return g_MyApp;

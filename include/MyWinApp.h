@@ -2,20 +2,20 @@
 
 #include <windows.h>
 
-class MyWinApp
+class CMyWinApp
 {
 private:
     LPVOID m_pMainWnd;
 
-    MyWinApp();
+    CMyWinApp();
 public:
-    ~MyWinApp();
+    ~CMyWinApp();
 
     virtual BOOL InitInstance();
     virtual BOOL ExitInstance();
     virtual BOOL Run();
 
-    static MyWinApp* GetWinApp();
+    static CMyWinApp* GetWinApp();
 };
 
 #endif /* _MY_WIN_APP_H */
