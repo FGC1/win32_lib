@@ -1,5 +1,6 @@
 #include <windows.h>
 #include <stdio.h>
+#include "MyWinApp.h"
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
@@ -24,45 +25,13 @@ int WINAPI WinMain(HINSTANCE hInstance,
                    LPTSTR szCmdLine,
                    int nCmdShow)
 {
-    TCHAR      szAppName[32] = TEXT("Win32LibTest");
-    HWND       hWnd          = NULL;
-    MSG        msg;
-    WNDCLASSEX wcex;
+    MyWinApp *pMyWinApp = NULL;
 
-    memset(&wcex, 0, sizeof(wcex));
-    memset(&msg, 0, sizeof(msg));
+    pMyWinApp = MyWinApp::GetWinApp();
 
-    wcex.cbSize        = sizeof(wcex);
-    wcex.style         = CS_HREDRAW | CS_VREDRAW;
-    wcex.lpfnWndProc   = WndProc;
-    wcex.cbClsExtra    = 0;
-    wcex.cbWndExtra    = 0;
-    wcex.hInstance     = hInstance;
-    wcex.hIcon         = ::LoadIcon(NULL, IDI_APPLICATION);
-    wcex.hCursor       = ::LoadCursor(NULL, IDC_ARROW);
-    wcex.hbrBackground = (HBRUSH)::GetStockObject(GRAY_BRUSH);
-    wcex.lpszMenuName  = NULL;
-    wcex.lpszClassName = szAppName;
-    wcex.hIconSm       = ::LoadIcon(NULL, IDI_ERROR);
+    pMyWinApp->InitInstance();
+    pMyWinApp->Run();
+    pMyWinApp->ExitInstance();
 
-    ::RegisterClassEx(&wcex);
-
-    hWnd = CreateWindowEx(0,
-                          szAppName,
-                          szAppName,
-                          WS_OVERLAPPEDWINDOW,
-                          CW_USEDEFAULT, CW_USEDEFAULT,
-                          CW_USEDEFAULT, CW_USEDEFAULT,
-                          NULL, NULL, hInstance, NULL);
-
-    ShowWindow(hWnd, nCmdShow);
-    UpdateWindow(hWnd);
-
-    while (::GetMessage(&msg, NULL, 0, 0))
-    {
-        ::TranslateMessage(&msg);
-        ::DispatchMessage(&msg);
-    }
-
-    return msg.wParam;
+    return 0;
 }
